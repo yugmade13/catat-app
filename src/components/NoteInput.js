@@ -34,6 +34,7 @@ const Form = styled.form`
     bottom: 32px;
     padding: 12px;
     border-radius: 50%;
+    line-height: 0;
     
     svg {
       font-size: 24px;

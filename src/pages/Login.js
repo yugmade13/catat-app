@@ -40,7 +40,7 @@ function Login({ loginSuccess }) {
             value={password}
             onChange={handlePasswordChange}
           />
-          <button type="button">Login</button>
+          <button type="submit">Login</button>
         </form>
         <span>
           {locale === 'id' ? 'Belum punya akun?' : "Don't have an account?"}
