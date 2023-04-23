@@ -1,0 +1,165 @@
+:root {
+  --white: #fff;
+  --black: #000;
+  --dark: #252525;
+  --grey: #757575;
+  --bg-input: rgba(250, 250, 250, 1);
+}
+
+[data-theme='dark'] {
+  --white: #000;
+  --dark: #fff;
+  --black: #fff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--white);
+  color: var(--grey);
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+header {
+  width: 100%;
+  max-width: 1440px;
+  height: 57px;
+  padding: 0 24px;
+  border-bottom: 1px solid rgba(242, 242, 242, 1);
+  margin: 0 auto;
+}
+
+nav {
+  height: inherit;
+}
+
+nav h1 {
+  font-family: 'Sans Serif Pro', sans-serif;
+}
+
+nav input {
+  margin-left: 16px;
+  width: 240px;
+}
+
+main {
+  width: 100%;
+  max-width: 824px;
+  margin: 0 auto;
+}
+
+section {
+  padding: 0 24px;
+  margin: 32px 0;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  color: var(--dark);
+}
+
+p {
+  font-family: 'Source Serif Pro', sans-serif;
+  font-weight: 400;
+  color: var(--dark);
+}
+
+a {
+  text-decoration: none;
+  color: var(--grey);
+}
+
+li {
+  list-style: none;
+}
+
+input, textarea {
+  display: block;
+  background: var(--bg-input);
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+}
+
+button {
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  padding: 8px 20px;
+  border-radius: 25px;
+  display: block;
+  font-weight: 400;
+}
+
+.button {
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  padding: 8px 20px;
+  border-radius: 25px;
+  display: block;
+  font-weight: 400;
+}
+
+svg {
+  font-size: 20px;
+}
+
+svg:hover {
+  color: var(--dark);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  align-items: center;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.write {
+  display: flex;
+  gap: 4px;
+  align-items: end
+}
+
+.write:hover {
+  color: var(--dark);
+  font-weight: 400;
+}
+
+.search .is-close {
+  display: none;
+}
+
+.flex-gap {
+  gap: 12px;
+}
+
+@media screen and (max-width: 600px) {
+  .is-close {
+    display: none;
+  }
+
+  .search .is-close {
+    display: block;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+}
+
