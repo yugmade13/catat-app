@@ -1,10 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import {showFormattedDate, showFormattedText} from '../utils';
-import {AiOutlineDelete} from 'react-icons/ai'
-import {BsBoxSeam, BsBox} from 'react-icons/bs'
+import { AiOutlineDelete } from 'react-icons/ai';
+import { BsBoxSeam, BsBox } from 'react-icons/bs';
 import PropTypes from 'prop-types';
+import { showFormattedDate, showFormattedText } from '../utils';
 
 const Item = styled.div`
   padding-bottom: 16px;
@@ -33,38 +33,39 @@ const Item = styled.div`
   }
 `;
 
-const NoteItem = ({id, title, body, createdAt, archived, onDelete, onArchived, onUnarchived}) => {
-    return (
-        <Item>
-            <h3>
-                <Link to={`/notes/${id}`}>{title}</Link>
-            </h3>
-            <p>{`${showFormattedText(body)}...`}</p>
-            <div className='flex flex-center flex-between'>
-                <span>{showFormattedDate(createdAt)}</span>
-                <ul className='flex flex-gap'>
-                    {archived
-                        ? (<li onClick={() => onUnarchived(id)}><BsBoxSeam /></li>)
-                        : (<li onClick={() => onArchived(id)}><BsBox /></li>)
-                    }
-                    <li onClick={() => onDelete(id)}>
-                        <AiOutlineDelete />
-                    </li>
-                </ul>
-            </div>
-        </Item>
-    );
-};
+function NoteItem({
+  id, title, body, createdAt, archived, onDelete, onArchived, onUnarchived,
+}) {
+  return (
+    <Item>
+      <h3>
+        <Link to={`/notes/${id}`}>{title}</Link>
+      </h3>
+      <p>{`${showFormattedText(body)}...`}</p>
+      <div className="flex flex-center flex-between">
+        <span>{showFormattedDate(createdAt)}</span>
+        <ul className="flex flex-gap">
+          {archived
+            ? (<li onClick={() => onUnarchived(id)}><BsBoxSeam /></li>)
+            : (<li onClick={() => onArchived(id)}><BsBox /></li>)}
+          <li onClick={() => onDelete(id)}>
+            <AiOutlineDelete />
+          </li>
+        </ul>
+      </div>
+    </Item>
+  );
+}
 
 NoteItem.propTypes = {
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    archived: PropTypes.bool.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    onArchived: PropTypes.func,
-    onUnarchived: PropTypes.func
-}
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  archived: PropTypes.bool.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onArchived: PropTypes.func,
+  onUnarchived: PropTypes.func,
+};
 
 export default NoteItem;

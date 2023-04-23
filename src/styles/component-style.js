@@ -63,4 +63,4 @@ const Loading = styled.div`
   }
 `;
 
-export {Background, Wrapper, Loading};
+export { Background, Wrapper, Loading };

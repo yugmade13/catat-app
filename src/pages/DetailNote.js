@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
-import {getNote} from '../utils/api';
-import {showFormattedDate} from '../utils';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import {Loading} from '../styles/component-style';
+import { getNote } from '../utils/api';
+import { showFormattedDate } from '../utils';
+import { Loading } from '../styles/component-style';
 
 const Detail = styled.div`
   display: flex;
@@ -24,35 +24,37 @@ const Detail = styled.div`
   }
 `;
 
-const DetailNote = () => {
-    const {id} = useParams();
-    const [note, setNote] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
+function DetailNote() {
+  const { id } = useParams();
+  const [note, setNote] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
+  useEffect(() => {
+    setIsLoading((prevState) => !prevState);
+    getNote(id)
+      .then(({ data }) => {
+        setNote(data);
         setIsLoading((prevState) => !prevState);
-        getNote(id)
-            .then(({data}) => {
-                setNote(data);
-                setIsLoading((prevState) => !prevState);
-            })
-    }, []);
+      });
+  }, []);
 
-    if (isLoading) {
-        return <Loading>
-            <p>Loading...</p>
-        </Loading>
-    }
-
+  if (isLoading) {
     return (
-        <section>
-            <Detail>
-                <h2>{note.title}</h2>
-                <p>{note.body}</p>
-                <span>{showFormattedDate(note.createdAt)}</span>
-            </Detail>
-        </section>
+      <Loading>
+        <p>Loading...</p>
+      </Loading>
     );
-};
+  }
+
+  return (
+    <section>
+      <Detail>
+        <h2>{note.title}</h2>
+        <p>{note.body}</p>
+        <span>{showFormattedDate(note.createdAt)}</span>
+      </Detail>
+    </section>
+  );
+}
 
 export default DetailNote;

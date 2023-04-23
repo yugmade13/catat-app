@@ -1,9 +1,9 @@
 import React from 'react';
-import LocaleContext from '../contexts/LocaleContext';
-import useInput from '../hooks/useInput';
 import styled from 'styled-components';
-import {AiOutlinePlusCircle, AiOutlineCheck} from 'react-icons/ai'
+import { AiOutlinePlusCircle, AiOutlineCheck } from 'react-icons/ai';
 import PropTypes from 'prop-types';
+import useInput from '../hooks/useInput';
+import LocaleContext from '../contexts/LocaleContext';
 
 const Form = styled.form`
   
@@ -45,46 +45,47 @@ const Form = styled.form`
   }
 `;
 
-const NoteInput = ({addNote}) => {
-    const {locale} = React.useContext(LocaleContext);
+function NoteInput({ addNote }) {
+  const { locale } = React.useContext(LocaleContext);
 
-    const [title, handleTitleChange] = useInput('');
-    const [body, handleBodyChange] = useInput('');
+  const [title, handleTitleChange] = useInput('');
+  const [body, handleBodyChange] = useInput('');
 
-    const onSubmitHandler = (event) => {
-        event.preventDefault();
-       addNote({title, body});
-    }
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    addNote({ title, body });
+  };
 
-    return (
-        <Form onSubmit={onSubmitHandler}>
-            <div>
-                <label htmlFor='title'><AiOutlinePlusCircle /></label>
-                <input
-                    id='title'
-                    type='text' placeholder={locale === 'id' ? 'Judul' : 'Title'}
-                    value={title}
-                    onChange={handleTitleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor='body'><AiOutlinePlusCircle /></label>
-                <textarea
-                    id='body'
-                    placeholder={locale === 'id' ? 'Ceritakan kisahmu..' : 'Tell your story'}
-                    value={body}
-                    onChange={handleBodyChange}
-                ></textarea>
-            </div>
-            <button>
-                <AiOutlineCheck />
-            </button>
-        </Form>
-    );
-};
+  return (
+    <Form onSubmit={onSubmitHandler}>
+      <div>
+        <label htmlFor="title"><AiOutlinePlusCircle /></label>
+        <input
+          id="title"
+          type="text"
+          placeholder={locale === 'id' ? 'Judul' : 'Title'}
+          value={title}
+          onChange={handleTitleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="body"><AiOutlinePlusCircle /></label>
+        <textarea
+          id="body"
+          placeholder={locale === 'id' ? 'Ceritakan kisahmu..' : 'Tell your story'}
+          value={body}
+          onChange={handleBodyChange}
+        />
+      </div>
+      <button type="submit">
+        <AiOutlineCheck />
+      </button>
+    </Form>
+  );
+}
 
 NoteInput.propTypes = {
-    addNote: PropTypes.func.isRequired
-}
+  addNote: PropTypes.func.isRequired,
+};
 
 export default NoteInput;
